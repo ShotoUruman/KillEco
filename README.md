@@ -41,7 +41,7 @@ Each game gets its own look. Points are shared across all of them, while rules, 
 | ![Bounties](./Screenshots/bounties.png) | ![Sektant tab](./Screenshots/bounties-sektant.png) |
 | Bounty contracts | Sektant, Full and Boss tabs |
 | ![Bounty settlement](./Screenshots/bounty-settlement.png) | ![Bounty prices](./Screenshots/bounty-prices.png) |
-| Settlement with a live payout split | Editable bounty prices |
+| Settlement with a live payout split | Editable bounty prices, with the written rules alongside |
 | ![Trades](./Screenshots/trades.png) | ![Redemptions](./Screenshots/redemptions.png) |
 | One trade book across every game | Redeem points for anything, at your price |
 | ![Shop](./Screenshots/shop.png) | ![Rules](./Screenshots/rules.png) |
@@ -65,15 +65,18 @@ Grab the latest installer from the [Releases page](../../releases/latest).
 |----------|---------|
 | Windows 10 / 11 (64-bit) | `KillEconomy-Setup.exe` (per user, no admin), standalone `KillEconomy.exe` |
 
-Nothing else to install: no Python, no Excel, everything the app needs is bundled in. On first run you pick who you are and start a fresh ledger at zero, or import an existing ledger workbook. Kill Economy can update itself after that (**Settings → App updates**).
+Nothing else to install: no Python, no Excel, everything the app needs is bundled in. On first run you pick who you are and start a fresh ledger at zero, or import an existing ledger workbook. From then on Kill Economy updates itself straight from this page's releases (**Settings → App updates**).
 
 ## Features
 
 - **The ledger:** shared kill-point balances for the whole squad, with an append-only history of every change and why it happened. Mistakes are reversed, never deleted. Balances can go negative, so debt is real.
+- **One ledger for the whole squad (new in 3.3.0):** one PC hosts and everyone else joins with a code. Balances, rules, bounties, bans, trades and history match on every PC, and every change is saved on the host. It works on the same network, or across the internet through a VPN such as Tailscale.
 - **Automatic Tarkov kills:** after extraction, Kill Economy reads the RAID STATISTICS screen with Windows' built-in OCR and credits your kills once per raid. It needs three matching reads and never touches game memory.
 - **Every game you play:** Tarkov, MK1, Street Fighter 6, Valorant, League of Legends and GTA 5 come built in. **Add Game** adds any other game, with its own theme, rules, shop and photo.
-- **Rules of engagement:** your house rules as priced, editable entries for teamkills, loot theft, trolling, insurance trolling, Squad Savior, singing callouts and more. Price changes only apply going forward; anything already paid keeps the price it was paid at.
+- **Rules of engagement:** your house rules as priced, editable entries for teamkills, loot theft, trolling, insurance trolling, Squad Savior, Zero to Hero, NVG usage, singing callouts and more. Price changes only apply going forward; anything already paid keeps the price it was paid at.
+- **The full written Tarkov ruleset (new in 3.2.0):** the squad's complete rulebook, word for word, sits in the Tarkov **Previous rules reference**. It covers loot claims, cultist rules, bounties, Squad Savior eligibility, 1v1s and the Kill Shop. Live prices are still whatever you've set in Rules and Shop.
 - **Bounties:** declare a boss before you engage, pull in helpers, then settle with proof or a witness. The payout split works off actual boss and guard kills plus agreed support shares, in whole points with nothing lost to rounding. Outcomes include Success, Boss not found and Failure. There's also fraud clawback with a 7-day ban, and Sektant, Full and Boss tabs (Factory night cultists included).
+- **Written bounty rules:** the full bounty rulebook covers helpers, help calls, splits, Sanitar, Boss not found, proof, fraud and Squad Savior. It sits right under **Edit bounty prices** and behind the **Bounty rules** button. Its values list is read from your current prices, so the rules and the prices always agree.
 - **1v1s:** agree terms and wagers up front, start from a standing start, and settle the series. Terms lock when both fighters agree.
 - **Shop and redemptions:** a priced shop per game, plus free-text redemptions where you name the reward and the price. Pay player to player, player to SYSTEM, or SYSTEM to player.
 - **Trades:** one global trade book for items, game time and favours across games, with partial delivery ("30 of 120 minutes"), cancellations and full history.
@@ -81,11 +84,11 @@ Nothing else to install: no Python, no Excel, everything the app needs is bundle
 - **Debts and deals:** track who owes what. Unpaid Tarkov debts double at the deadline and again every full week after.
 - **Discord:** a live kill feed scoreboard, bans board, shop board and trade posts, each edited in place instead of spamming the channel. Every webhook is separate and optional.
 - **Safe by default:** backups before every update, one-click ledger backup and Excel export, and a tray agent that keeps tracking with the window closed. It can also start silently when you log in.
-- Auto-updates
+- **Automatic updates:** checks this repo's latest release at startup and every six hours, with no setup. Each update has its size and SHA-256 verified and is test-started before it replaces anything. Your ledger is backed up first, and if the new version won't start, the previous one comes back. You can install with one click, or let it download and restart on its own.
 
 ## Privacy
 
-Your ledger lives in a SQLite file on your PC (`%LOCALAPPDATA%\KillEconomy`) and goes nowhere else. No account, no analytics, no server. Kill Economy only goes online for things you turn on: Discord webhooks you paste in, and the update check. Webhook addresses are encrypted with Windows' own data protection and never shown again after you save them. Raid capture uses the OCR built into Windows, on your PC.
+Your ledger lives in a SQLite file on your PC (`%LOCALAPPDATA%\KillEconomy`) and goes nowhere else. No account, no analytics, no server. Kill Economy only goes online for things you turn on: Discord webhooks you paste in, the update check, and the shared squad ledger. When you host, your squad's PCs talk directly to yours. Every request is signed with your join code's secret, but traffic is not encrypted, so keep it to your own network or a VPN. Webhook addresses are encrypted with Windows' own data protection and never shown again after you save them. Raid capture uses the OCR built into Windows, on your PC.
 
 ## Bugs
 
