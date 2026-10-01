@@ -70,7 +70,7 @@ Nothing else to install: no Python, no Excel, everything the app needs is bundle
 ## Features
 
 - **The ledger:** shared kill-point balances for the whole squad, with an append-only history of every change and why it happened. Mistakes are reversed, never deleted. Balances can go negative, so debt is real.
-- **One ledger for the whole squad (new in 3.3.0):** one PC hosts and everyone else joins with a code. Balances, rules, bounties, bans, trades and history match on every PC, and every change is saved on the host. It works on the same network, or across the internet through a VPN such as Tailscale.
+- **One ledger for the whole squad (new in 3.3.0):** one PC hosts and everyone else joins with a code. Balances, rules, bounties, bans, trades and history match on every PC, and every change is saved on the host. It works on the same network, or across the internet through a VPN such as Tailscale. The host picks which of its addresses goes in the join code from a list that names each adapter. Since 3.4.1 it never picks a privacy VPN such as NordVPN, whose address other PCs cannot reach.
 - **Automatic Tarkov kills:** after extraction, Kill Economy reads the RAID STATISTICS screen with Windows' built-in OCR and credits your kills once per raid. It needs three matching reads and never touches game memory.
 - **Every game you play:** Tarkov, MK1, Street Fighter 6, Valorant, League of Legends and GTA 5 come built in. **Add Game** adds any other game, with its own theme, rules, shop and photo. A game's photo also fills the Overview banner (new in 3.4.0).
 - **Rules of engagement:** your house rules as priced, editable entries for teamkills, loot theft, trolling, insurance trolling, Squad Savior, Zero to Hero, NVG usage, singing callouts and more. Price changes only apply going forward; anything already paid keeps the price it was paid at.
@@ -91,6 +91,8 @@ Nothing else to install: no Python, no Excel, everything the app needs is bundle
 Your ledger lives in a SQLite file on your PC (`%LOCALAPPDATA%\KillEconomy`) and goes nowhere else. No account, no analytics, no server. Kill Economy only goes online for things you turn on: Discord webhooks you paste in, the update check, and the shared squad ledger. When you host, your squad's PCs talk directly to yours. Every request is signed with your join code's secret, but traffic is not encrypted, so keep it to your own network or a VPN. Webhook addresses are encrypted with Windows' own data protection and never shown again after you save them. Raid capture uses the OCR built into Windows, on your PC.
 
 ## Bugs
+
+**"Cannot reach the host" when joining a shared ledger?** Make sure both PCs run the same version and the host app is open. If the host uses a VPN app such as NordVPN, update to 3.4.1 or later and have the host click **Copy join code** again, because older codes could carry the VPN's address. A connected VPN can also block local traffic, so turn on its LAN access option or disconnect it while you play.
 
 Open an [issue](../../issues/new/choose) with what you were doing, what happened, and your version (**Settings → App updates**). A screenshot helps. Never paste a Discord webhook address into an issue.
 
